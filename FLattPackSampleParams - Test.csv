@@ -1,0 +1,4 @@
+Name,Cell Type,y Shift,Volume Fraction
+d_0p2ys_0p5vf,Diamond,0.2,0.5
+g_0p7ys_0p5vf,Gyroid,0.7,0.5
+p_0p9ys_0p5vf,Primitive,0.9,0.5
