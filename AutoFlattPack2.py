@@ -1,12 +1,18 @@
 """
 This version should work on all computers!
 
-Before running the program, make sure that params_filepath and destination_filepath are accurate. 
-They must be the complete filepath. 
-For example: 
-    params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams - Test.csv'
-    destination_filepath = r'C:\Users\ahuan\Desktop\FLatt Samples'
-Note that destination_filepath is a folder, but does not include the backslash (\) at the end
+To start the program: 
+    1.  Ensure all desired sample parametes are in the csv file
+    2.  Ensure that params_filepath and destination_filepath are accurate.
+        They must be the complete filepath. 
+        For example: 
+            params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams - Test.csv'
+            destination_filepath = r'C:\Users\ahuan\Desktop\FLatt Samples'
+        Note that destination_filepath is a folder, but does not include the backslash (\) at the end
+    3. Open FLatt_Pack normally. (Do NOT open as administrator)
+    4. Click "Next" until you are on the Geometry page
+    5. Click Run on the program and make sure nothing is in front of the FLatt_Pack window
+
 """
 
 import pyautogui as pg
