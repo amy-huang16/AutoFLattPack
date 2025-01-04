@@ -1,13 +1,11 @@
-"""
-This version only works on Amy's laptop! Go to the updated version for a program that works on all computers
+# This version only works on Amy's laptop! Go to the updated version for a program that works on all computers
 
-Before running the program, make sure that params_filepath and destination_filepath are accurate. 
-They must be the complete filepath. 
-For example: 
-    params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams - Test.csv'
-    destination_filepath = r'C:\Users\ahuan\Desktop\FLatt Samples'
-Note that destination_filepath is a folder, but does not include the backslash (\) at the end
-"""
+# Before running the program, make sure that params_filepath and destination_filepath are accurate. 
+# They must be the complete filepath. 
+# For example: 
+#     params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams - Test.csv'
+#     destination_filepath = r'C:\Users\ahuan\Desktop\FLatt Samples'
+# Note that destination_filepath is a folder, but does not include the backslash (\) at the end
 
 import pyautogui as pg
 import pandas as pd
@@ -36,14 +34,14 @@ def generate_name(row): # i.e., g_0p5ys_0p3vf
 
     # Y_SHIFT
     if 0 <= row['y Shift'] <= 1:
-        yshift = str(row['y Shift']).replace('.', 'p')
+        yshift = f'{round(row['y Shift'], 1):.1f}'.replace('.', 'p')
     else:
         pg.alert(f'y-shift for sample {row.name} must be between 0 and 1')
         return None
 
     # VOLUME FRACTION
     if 0.1 <= row['Volume Fraction'] <= 0.9:
-        vf = str(row['Volume Fraction']).replace('.', 'p')
+        vf = f'{round(row['Volume Fraction'], 2):.2f}'.replace('.', 'p')
     else:
         pg.alert(f'volume fraction for sample {row.name} must be between 0.1 and 0.9')
         return None
@@ -81,7 +79,7 @@ for index, row in df.iterrows(): # for each row (each sample)
     # on Cell Type page, double-click y-shift for cell translation box (1660, 452) or 3 tabs
     pg.doubleClick(1660, 452)
     # change to value given by csv
-    pg.write(str(row['y Shift']), interval=0.2)
+    pg.write(str(round(row['y Shift'], 1)), interval=0.2)
     # click gyroid (1030, 800), diamond (1030, 1090), or primitive (1300, 1090) based on cell_type given by csv
     if str(row['Cell Type']).strip().lower() == 'gyroid':
         pg.click(1030, 800, _pause=True)
@@ -100,7 +98,7 @@ for index, row in df.iterrows(): # for each row (each sample)
     # on Volume Fraction page, double-click the text box for volume fraction (1161, 752)
     pg.doubleClick(1161, 752)
     # change to value given by csv
-    pg.write(str(row['Volume Fraction']), interval=0.2)
+    pg.write(str(round(row['Volume Fraction'], 2)), interval=0.2)
     # click "Next" button (1879, 1295)
     pg.click(1879, 1295)
     # wait ~5 seconds or until confirmation page shows up?
