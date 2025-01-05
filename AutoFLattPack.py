@@ -21,30 +21,32 @@ df = pd.read_csv(params_filepath)
 print(df)
 
 def generate_name(row): # i.e., g_0p5ys_0p3vf 
+    vf_min = 0.1
     # CELL TYPE
     if str(row['Cell Type']).strip().lower() == 'gyroid':
         cell_type = 'g'
     elif str(row['Cell Type']).strip().lower() == 'diamond':
         cell_type = 'd'
     elif str(row['Cell Type']).strip().lower() == 'primitive':
+        vf_min = 0.36
         cell_type = 'p'
     else: 
         pg.alert(f'Cell Type for sample {row.name + 1} is not recognized')
-        return None
+        quit()
 
     # Y_SHIFT
     if 0 <= row['y Shift'] <= 1:
         yshift = f'{round(row['y Shift'], 1):.1f}'.replace('.', 'p')
     else:
-        pg.alert(f'y-shift for sample {row.name} must be between 0 and 1')
-        return None
+        pg.alert(f'y-shift for sample {row.name + 1} must be between 0 and 1')
+        quit()
 
     # VOLUME FRACTION
-    if 0.1 <= row['Volume Fraction'] <= 0.9:
+    if vf_min <= row['Volume Fraction'] <= 0.85:
         vf = f'{round(row['Volume Fraction'], 2):.2f}'.replace('.', 'p')
     else:
-        pg.alert(f'volume fraction for sample {row.name} must be between 0.1 and 0.9')
-        return None
+        pg.alert(f'volume fraction for sample {row.name + 1} must be between {vf_min} and 0.85')
+        quit()
 
     # CREATE NAME
     name = f'{cell_type}_{yshift}ys_{vf}vf'
@@ -60,6 +62,7 @@ pg.sleep(2)
 
 # FLATTPACK 
 for index, row in df.iterrows(): # for each row (each sample)    
+    print(f'Starting sample {row.name + 1}: {row['Name']}')
     # on Geometry page, click "Next" button (1857, 1265)  or 4 tabs
     # pg.press('tab', interval=1, presses=4)
     pg.click(1857, 1265)
@@ -75,7 +78,6 @@ for index, row in df.iterrows(): # for each row (each sample)
     # wait ~3 seconds
     pg.sleep(3)
 
-
     # on Cell Type page, double-click y-shift for cell translation box (1660, 452) or 3 tabs
     pg.doubleClick(1660, 452)
     # change to value given by csv
@@ -89,6 +91,7 @@ for index, row in df.iterrows(): # for each row (each sample)
         pg.click(1300, 1090, _pause=True)
     else:
         pg.alert(f'Cell Type for sample {row.name + 1} is not recognized')
+        exit()
 
     # click "Next" button (1870, 1443)
     pg.click(1870, 1443)
@@ -101,8 +104,8 @@ for index, row in df.iterrows(): # for each row (each sample)
     pg.write(str(round(row['Volume Fraction'], 2)), interval=0.2)
     # click "Next" button (1879, 1295)
     pg.click(1879, 1295)
-    # wait ~5 seconds or until confirmation page shows up?
-    pg.sleep(5)
+    # wait 7 seconds or until confirmation page shows up?
+    pg.sleep(7)
 
     # on Volume Fraction preview page, click "Next" button (1689, 964)
     pg.click(1689, 964)
@@ -115,7 +118,7 @@ for index, row in df.iterrows(): # for each row (each sample)
     # double-click the box for "skin thickness" (1285, 1025)
     pg.doubleClick(1285, 1025)
     # type 5 
-    pg.typewrite('5')
+    pg.write('5')
     # click "Next" button (1864, 1206)
     pg.click(1864, 1206)
     # wait ~4 seconds
@@ -139,8 +142,8 @@ for index, row in df.iterrows(): # for each row (each sample)
 
     # on triangle mesh reduction page, click "Next" button (1862, 1112)
     pg.click(1862, 1112)
-    # wait 15 seconds or until lattice preview page shows
-    pg.sleep(15)
+    # wait 18 seconds or until lattice preview page shows
+    pg.sleep(20)
 
     # on Lattice Preview page, click "Next" button (1691, 957)
     pg.click(1691, 957)
@@ -151,7 +154,6 @@ for index, row in df.iterrows(): # for each row (each sample)
     pg.click(1625, 1004)
     # wait ~3 seconds
     pg.sleep(3)
-
 
 
 
