@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # read csv file
-params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams - Test.csv'
+params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams.csv'
 
 df = pd.DataFrame(columns=['Name', 'Cell Type', 'y Shift', 'Volume Fraction'])
 
