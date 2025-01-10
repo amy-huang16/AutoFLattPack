@@ -28,7 +28,7 @@ def generate_name(row): # i.e., g_0p5ys_0p3vf
     elif str(row['Cell Type']).strip().lower() == 'diamond':
         cell_type = 'd'
     elif str(row['Cell Type']).strip().lower() == 'primitive':
-        vf_min = 0.36
+        vf_min = 0.24
         cell_type = 'p'
     else: 
         pg.alert(f'Cell Type for sample {row.name + 1} is not recognized')
