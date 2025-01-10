@@ -24,4 +24,4 @@ df['y Shift'] = np.random.randint(0, 10, size=len(df)) * 0.1
 
 # write to original csv file
 df.to_csv(params_filepath, index=False)
-print("Successfully generated random y-shifts")
+print("Successfully generated random sample parameters")
