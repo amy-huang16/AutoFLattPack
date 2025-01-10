@@ -14,7 +14,7 @@ import pandas as pd
 These two paths should be changed for each user
 """
 # read csv file
-params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams - Test.csv'
+params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams.csv'
 destination_filepath = r'C:\Users\ahuan\Desktop\FLatt Samples'
 
 df = pd.read_csv(params_filepath)
