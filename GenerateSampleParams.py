@@ -4,7 +4,7 @@ import numpy as np
 # get csv filepath
 params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams.csv'
 
-df = pd.DataFrame(columns=['Name', 'Cell Type', 'y Shift', 'Volume Fraction'])
+df = pd.DataFrame(columns=['Name', 'Cell Type', 'Volume Fraction', 'y Shift'])
 
 # generate 50 of each geometry (Diamond, Gyroid, Primitive)
 df['Cell Type'] = ['Diamond' for i in range(50)] + ['Gyroid' for i in range(50)] + ['Primitive' for i in range(50)]

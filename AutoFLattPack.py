@@ -15,7 +15,7 @@ These two paths should be changed for each user
 """
 # read csv file
 params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams.csv'
-destination_filepath = r'C:\Users\ahuan\Desktop\FLatt Samples'
+destination_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLatt Samples'
 
 df = pd.read_csv(params_filepath)
 print(df)
@@ -49,7 +49,7 @@ def generate_name(row): # i.e., g_0p5ys_0p3vf
         quit()
 
     # CREATE NAME
-    name = f'{cell_type}_{yshift}ys_{vf}vf'
+    name = f'{cell_type}_{vf}vf_{yshift}ys'
     return name
 
 df['Name'] = df.apply(generate_name, axis=1)
