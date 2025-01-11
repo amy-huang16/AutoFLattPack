@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-# read csv file
+# get csv filepath
 params_filepath = r'C:\Users\ahuan\Desktop\AutoFlattPack\FLattPackSampleParams.csv'
 
 df = pd.DataFrame(columns=['Name', 'Cell Type', 'y Shift', 'Volume Fraction'])
@@ -22,6 +22,6 @@ df['Volume Fraction'] = np.concatenate((dia_vf, gyr_vf, prim_vf))
 # generate random y-shifts
 df['y Shift'] = np.random.randint(0, 10, size=len(df)) * 0.1
 
-# write to original csv file
+# write to csv file
 df.to_csv(params_filepath, index=False)
 print("Successfully generated random sample parameters")
